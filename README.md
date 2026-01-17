@@ -1,59 +1,85 @@
-# CheckInSystem
+# 🎟️ Sistema de Check-in para Eventos (Angular 21)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Aplicação frontend para **gerenciamento de check-in em eventos**, utilizando **QR Code implementado do zero**, simulando cenários reais de conferências, cursos e workshops.
 
-## Development server
+> 🚨 **Importante**  
+> Nesta versão, o QR Code é gerado manualmente no frontend usando apenas uma biblioteca JavaScript base (`qrcode`), **sem componentes Angular prontos**.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🧩 Visão Geral do Produto
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 👥 Perfis
+- **Admin**: gerencia evento e participantes
+- **Staff**: realiza check-in
 
-## Code scaffolding
+### 🔄 Fluxo Principal
+1. Admin cadastra participantes
+2. Sistema gera QR Code único (frontend)
+3. Staff lê o código e realiza check-in
+4. Dashboard reflete status em tempo real
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🏗️ Arquitetura Angular
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Angular **21**
+- Standalone Components
+- Gerenciamento de estado com **Signals**
+- Lazy Loading por feature
+- Guards modernos (`CanMatch`)
 
-```bash
-ng generate --help
-```
 
-## Building
+---
 
-To build the project run:
+## ✨ Funcionalidades
 
-```bash
-ng build
-```
+### 📷 QR Code (Implementado do Zero)
+- Geração de QR Code no navegador
+- Biblioteca base: **qrcode (JavaScript puro)**
+- Payload estruturado
+- QR gerado como imagem Base64
+- Nenhuma dependência Angular específica
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 👥 Participantes
+- Cadastro de participantes
+- Identificador único
+- Status de check-in
 
-## Running unit tests
+### ✅ Check-in
+- Leitura do conteúdo do QR Code
+- Validação do payload
+- Prevenção de check-in duplicado
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 📊 Dashboard
+- Total de participantes
+- Total de check-ins
+- Atualização reativa em tempo real
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## 🧠 Gerenciamento de Estado
 
-For end-to-end (e2e) testing, run:
+- Abordagem: **Signals**
+- Store global: `EventStore`
+- Sem NgRx
+- Alta legibilidade e testabilidade
+- Reatividade nativa do Angular
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🔐 Segurança
 
-## Additional Resources
+### Roles
+- `ADMIN`
+- `STAFF`
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Guards
+- `CanMatch`
+
+### Payload do QR Code
+```json
+{
+  "participantId": "uuid",
+  "generatedAt": 1730000000000
+}

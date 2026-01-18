@@ -7,12 +7,12 @@ export const routes: Routes = [
       import('../../features/participants/participants.route')
         .then(m => m.PARTICIPANTS_ROUTES)
   },
-  // {
-  //   path: 'checkin',
-  //   loadChildren: () =>
-  //     import('../../features/checkin/checkin.routes')
-  //       .then(m => m.CHECKIN_ROUTES)
-  // },
+  {
+    path: 'checkin',
+    loadChildren: () =>
+      import('../../features/checkin/checkin.routes')
+        .then(m => m.CHECKIN_ROUTES)
+  },
   // {
   //   path: 'dashboard',
   //   loadChildren: () =>

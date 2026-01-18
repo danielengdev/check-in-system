@@ -1,1 +1,12 @@
-<p>participant-list.component works!</p>
+<button (click)="add()">Adicionar</button>
+
+<ul>
+  @for (p of store.participants(); track p.id) {
+    <li>
+      <strong>{{ p.name }}</strong>
+      <span>{{ p.checkedIn ? '✔' : '❌' }}</span>
+
+      <app-participant-qrcode [value]="p.id" />
+    </li>
+  }
+</ul>

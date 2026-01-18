@@ -13,10 +13,10 @@ export const routes: Routes = [
       import('../../features/checkin/checkin.routes')
         .then(m => m.CHECKIN_ROUTES)
   },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () =>
-  //     import('../../features/dashboard/dashboard.routes')
-  //       .then(m => m.DASHBOARD_ROUTES)
-  // }
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('../../features/dashboard/dashboard.routes')
+        .then(m => m.DASHBOARD_ROUTES)
+  }
 ];
